@@ -1,11 +1,9 @@
 import "./Register.css";
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { ButtonKM } from "../../UI/Button/ButtonKM";
 import { Search } from "../Search/Search";
-import { RowData } from "../../API/Data/Data";
-import { ColData } from "../../API/Data/Data";
 // import { SelectChangeEvent } from "@mui/material/Select";
 // import MenuItem from "@mui/material/MenuItem";
 // import FormHelperText from "@mui/material/FormHelperText";
@@ -14,18 +12,49 @@ import { ColData } from "../../API/Data/Data";
 // import Stack from "@mui/material/Stack";
 
 export const Register: React.FC = () => {
-	// const [currDate, setCurrDate] = useState<string>(
-	// 	new Date().getFullYear().toString(),
-	// );
+	const columns: GridColDef<(typeof rows)[number]>[] = [
+		{ field: "id", headerName: "ID", width: 90 },
+		{
+			field: "firstName",
+			headerName: "First name",
+			width: 150,
+			editable: true,
+		},
+		{
+			field: "lastName",
+			headerName: "Last name",
+			width: 150,
+			editable: true,
+		},
+		{
+			field: "age",
+			headerName: "Age",
+			type: "number",
+			width: 110,
+			editable: true,
+		},
+		{
+			field: "fullName",
+			headerName: "Full name",
+			description: "This column has a value getter and is not sortable.",
+			sortable: false,
+			width: 160,
+			valueGetter: (value, row) =>
+				`${row.firstName || ""} ${row.lastName || ""}`,
+		},
+	];
 
-	// const handleChange = (event: SelectChangeEvent) => {
-	// 	setAge(event.target.value);
-	// };
-
-	// const [show, setShow] = useState<boolean>(false);
-	// const handleClick = (currentState) => {
-	// 	setShow(currentState);
-	// };
+	const rows = [
+		{ id: 1, lastName: "Snow", firstName: "Jon", age: 14 },
+		{ id: 2, lastName: "Lannister", firstName: "Cersei", age: 31 },
+		{ id: 3, lastName: "Lannister", firstName: "Jaime", age: 31 },
+		{ id: 4, lastName: "Stark", firstName: "Arya", age: 11 },
+		{ id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
+		{ id: 6, lastName: "Melisandre", firstName: null, age: 150 },
+		{ id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
+		{ id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
+		{ id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+	];
 	return (
 		<>
 			<section className="sections register__section">
@@ -33,12 +62,17 @@ export const Register: React.FC = () => {
 					<div className="register__content km__content">
 						<p className="km__info-text">* РЕЕСТР</p>
 						<p className="km__info-text">* Блок с фильтрами</p>
-						<ButtonKM onClick={() => console.log(`Переход`)}>Добавить</ButtonKM>
-						<Search />
+						<ButtonKM
+							type="btn submit_btn register_add-btn"
+							onClick={() => console.log(`Переход`)}
+						>
+							Добавить
+						</ButtonKM>
+						<Search rows={rows} />
 						<Box sx={{ height: 400, width: "100%" }}>
 							<DataGrid
-								columns={ColData}
-								rows={RowData}
+								columns={columns}
+								rows={rows}
 								initialState={{
 									pagination: {
 										paginationModel: {
@@ -51,98 +85,6 @@ export const Register: React.FC = () => {
 								disableRowSelectionOnClick
 							/>
 						</Box>
-
-						{/* <ul className="register_header-list">
-							<FormControl sx={{ minWidth: 50 }}>
-								<FormHelperText>КМ</FormHelperText>
-								<Select
-									value={age}
-									onChange={handleChange}
-									displayEmpty
-									inputProps={{ "aria-label": "Without label" }}
-								>
-									<MenuItem value="">
-										<em>None</em>
-									</MenuItem>
-									<MenuItem value={10}>Ten</MenuItem>
-									<MenuItem value={20}>Twenty</MenuItem>
-									<MenuItem value={30}>Thirty</MenuItem>
-								</Select>
-							</FormControl>
-							<FormControl>
-								<FormHelperText>КМ</FormHelperText>
-								<Select
-									value={age}
-									onChange={handleChange}
-									displayEmpty
-									inputProps={{ "aria-label": "Without label" }}
-								>
-									<MenuItem value="">
-										<em>None</em>
-									</MenuItem>
-									<MenuItem value={10}>Ten</MenuItem>
-									<MenuItem value={20}>Twenty</MenuItem>
-									<MenuItem value={30}>Thirty</MenuItem>
-								</Select>
-							</FormControl>
-
-							<FormControl>
-								<FormHelperText>КМ</FormHelperText>
-								<Select
-									value={age}
-									onChange={handleChange}
-									displayEmpty
-									inputProps={{ "aria-label": "Without label" }}
-								>
-									<MenuItem value="">
-										<em>None</em>
-									</MenuItem>
-									<MenuItem value={10}>Ten</MenuItem>
-									<MenuItem value={20}>Twenty</MenuItem>
-									<MenuItem value={30}>Thirty</MenuItem>
-								</Select>
-							</FormControl>
-
-							<FormControl>
-								<FormHelperText>КМ</FormHelperText>
-								<Select
-									value={age}
-									onChange={handleChange}
-									displayEmpty
-									inputProps={{ "aria-label": "Without label" }}
-								>
-									<MenuItem value="">
-										<em>None</em>
-									</MenuItem>
-									<MenuItem value={10}>Ten</MenuItem>
-									<MenuItem value={20}>Twenty</MenuItem>
-									<MenuItem value={30}>Thirty</MenuItem>
-								</Select>
-							</FormControl>
-
-							<FormControl>
-								<FormHelperText>КМ</FormHelperText>
-								<Select
-									value={age}
-									onChange={handleChange}
-									displayEmpty
-									inputProps={{ "aria-label": "Without label" }}
-								>
-									<MenuItem value="">
-										<em>None</em>
-									</MenuItem>
-									<MenuItem value={10}>Ten</MenuItem>
-									<MenuItem value={20}>Twenty</MenuItem>
-									<MenuItem value={30}>Thirty</MenuItem>
-								</Select>
-							</FormControl>
-						</ul> */}
-
-						{/* <div className="pagination__content">
-							<Stack>
-								<Pagination count={10} size="large" />
-							</Stack>
-						</div> */}
 					</div>
 				</div>
 			</section>
