@@ -10,7 +10,7 @@ import { Loader } from "./components/UI/Loader";
 // import { ZayavkiLinks } from "./components/Pages/ZayavkiLinks/ZayavkiLink";
 // import { Region } from "./components/Pages/Region/Region";
 // import { Register } from "./components/Pages/Register/Register";
-import { Search } from "./components/Pages/Search/Search";
+// import { Search } from "./components/Pages/Search/Search";
 
 const LazyRegistrationPage = lazy(
 	() => import("./components/Pages/Auth/Registration.tsx/Registarion"),
