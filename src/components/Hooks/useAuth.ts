@@ -7,6 +7,7 @@ import { z } from "zod";
 export const RegScheme = z.object({
 	username: z.string(),
 	password: z.string().max(3),
+	role: z.string().max(1),
 });
 
 export type RegType = z.infer<typeof RegScheme>;
