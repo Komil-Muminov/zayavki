@@ -27,16 +27,16 @@ function App() {
 			<Suspense fallback={<div>{<Loader />}</div>}>
 				<Routes>
 					<Route path="*" element={<LazyAuthPage />} />
-					<Route path="/auth" element={<Auth />} />
-					<Route path="/authorization" element={<LazyAuthorizationPage />} />
-					<Route path="/registration" element={<LazyRegistrationPage />} />
-					<Route path="/authorization" element={<Authorization />} />
+					<Route path="auth" element={<Auth />} />
+					<Route path="authorization" element={<LazyAuthorizationPage />} />
+					<Route path="registration" element={<LazyRegistrationPage />} />
+					<Route path="authorization" element={<Authorization />} />
 				</Routes>
 			</Suspense>
-			<NavBottom />
+			{/* <NavBottom />
 			<ZayavkiLinks />
 			<Region />
-			<Register />
+			<Register /> */}
 		</>
 	);
 }
